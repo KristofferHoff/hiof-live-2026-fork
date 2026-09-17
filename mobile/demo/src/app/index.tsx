@@ -3,9 +3,12 @@ import { Loading } from "@/components/shared/Loading";
 import { TaskLayout } from "@/components/tasks/TaskLayout";
 import { TaskList } from "@/components/tasks/TaskList";
 import { tasks } from "@/data/tasks";
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 export default function Index() {
+  const [allMyTasks, setAllMyTasks] = useState(tasks);
+
   const myAwesomeFunction = (data: { message: string; id: number }) => {
     console.log("Hello from Index.tsx");
     console.log(data);
@@ -18,7 +21,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <TaskLayout>
-        <TaskList tasks={tasks} />
+        <TaskList tasks={allMyTasks} />
       </TaskLayout>
       {/* <Loading label={"Her laster vi ..."} />
       <Empty title={"Intet å vise"} onPress={myAwesomeFunction} />

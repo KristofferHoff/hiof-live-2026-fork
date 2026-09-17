@@ -6,9 +6,14 @@ import {
   View,
   StyleSheet,
   type TextInputChangeEvent,
+  Pressable,
 } from "react-native";
 
-export function TaskRegister() {
+type TaskRegisterProps = {
+  onRegister: (taskName: string) => void;
+};
+
+export function TaskRegister({ onRegister }: TaskRegisterProps) {
   const [title, setTitle] = useState("");
 
   function onTextUpdate(text: string) {
@@ -31,6 +36,9 @@ export function TaskRegister() {
         onChangeText={onTextUpdate}
         onChange={onChangeEvent}
       />
+      <Pressable style={styles.button} onPress={() => onRegister(title)}>
+        <Text style={styles.buttonText}>Register Task</Text>
+      </Pressable>
     </View>
   );
 }
@@ -50,5 +58,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "gray",
     padding: 8,
+  },
+  button: {
+    backgroundColor: Theme.primary,
+    padding: 12,
+    borderRadius: 4,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
   },
 });

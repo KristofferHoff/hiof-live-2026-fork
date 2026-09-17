@@ -20,9 +20,9 @@ export function TaskList({ tasks }: TaskListProps) {
   return (
     <View style={styles.container}>
       <TaskRegister />
-      {/* {tasks.map((task) => (
+      {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
-      ))} */}
+      ))}
     </View>
   );
 }
