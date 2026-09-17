@@ -6,9 +6,10 @@ import { TaskRegister } from "./TaskRegister";
 
 type TaskListProps = {
   tasks: Task[];
+  onRegister: (taskName: string) => void;
 };
 
-export function TaskList({ tasks }: TaskListProps) {
+export function TaskList({ tasks, onRegister }: TaskListProps) {
   if (tasks.length === 0) {
     return (
       <View>
@@ -19,7 +20,7 @@ export function TaskList({ tasks }: TaskListProps) {
 
   return (
     <View style={styles.container}>
-      <TaskRegister />
+      <TaskRegister onRegister={onRegister} />
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}

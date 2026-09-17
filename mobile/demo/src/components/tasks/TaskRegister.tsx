@@ -17,12 +17,12 @@ export function TaskRegister({ onRegister }: TaskRegisterProps) {
   const [title, setTitle] = useState("");
 
   function onTextUpdate(text: string) {
-    console.log("Text updated:", text);
+    //console.log("Text updated:", text);
     setTitle(text);
   }
 
   function onChangeEvent(event: TextInputChangeEvent) {
-    console.log("Change event:", event);
+    //console.log("Change event:", event);
   }
 
   return (
