@@ -2,6 +2,7 @@ import type { Task } from "@/utils/task-schema";
 import { View, Text, StyleSheet } from "react-native";
 import { TaskItem } from "./TaskItem";
 import { Theme } from "@/constants/theme";
+import { TaskRegister } from "./TaskRegister";
 
 type TaskListProps = {
   tasks: Task[];
@@ -18,9 +19,10 @@ export function TaskList({ tasks }: TaskListProps) {
 
   return (
     <View style={styles.container}>
-      {tasks.map((task) => (
+      <TaskRegister />
+      {/* {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
-      ))}
+      ))} */}
     </View>
   );
 }
