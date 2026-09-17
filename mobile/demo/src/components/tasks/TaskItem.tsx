@@ -1,5 +1,6 @@
+import { Theme } from "@/constants/theme";
 import type { Task } from "@/utils/task-schema";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 type TaskItemProps = {
   task: Task;
@@ -10,18 +11,58 @@ export function TaskItem({ task }: TaskItemProps) {
   const { id, title, done } = task;
 
   return (
-    <View>
-      <Text style={{ fontWeight: "bold", fontSize: 18 }}>{id}</Text>
-      <Text style={{ fontWeight: "bold", fontSize: 18 }}>{title}</Text>
-      {done ? (
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "green" }}>
-          Done
-        </Text>
-      ) : (
-        <Text style={{ fontWeight: "bold", fontSize: 16, color: "red" }}>
-          Not Done
-        </Text>
-      )}
+    <View style={styles.container}>
+      <View style={[styles.checkbox, done && styles.checkboxDone]}>
+        {done ? <Text style={styles.checkmark}>✓</Text> : null}
+      </View>
+      <Text style={[styles.title, done && styles.titleDone]}>{title}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Theme.spacing.md,
+    padding: Theme.spacing.md,
+    borderWidth: 1,
+    borderColor: Theme.border,
+    borderRadius: Theme.radius.md,
+    backgroundColor: Theme.surface,
+  },
+  containerDone: {
+    backgroundColor: Theme.primaryLight,
+    borderColor: Theme.primary,
+  },
+  containerPressed: {
+    opacity: 0.6,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    borderWidth: 2,
+    borderColor: Theme.border,
+    borderRadius: Theme.radius.sm,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  checkboxDone: {
+    borderColor: Theme.success,
+    backgroundColor: Theme.success,
+  },
+  checkmark: {
+    color: Theme.textInverted,
+    fontSize: Theme.fontSize.sm,
+    fontWeight: "700",
+  },
+  title: {
+    flex: 1,
+    fontSize: Theme.fontSize.md,
+    color: Theme.text,
+  },
+  titleDone: {
+    color: Theme.muted,
+    textDecorationLine: "line-through",
+  },
+});
